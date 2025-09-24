@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  
+  <button class="back-arrow" onclick="goBackToLogin()"> ← </button>
+  <!-- Etapa 1: Escolher serviço -->
+  <div class="step active" id="step1">
+      <h2>Escolha o Procedimento</h2>
+      <div class="card" "> <input type="checkbox" id="banhoDeGel"> <h2> Banho de Gel </h2> 
+      </div>
+      <div class="card" "> <input type="checkbox" id="aplicacaoDeGel"> <h2> Aplicação em Gel</h2></div>
+      <div class="card"> 
+        <input type="checkbox" id="manutencao"> <h2> Manutenção </h2></div>
+      <div class="card" ">
+        <input type="checkbox" id="decoracao"><h2> Decoração </h2></div>
+
+          <h3 id="valorFinal"> </h3>
+          <button class="btn1" id="chooseTimeBtn"> Escolher um Horário</button>
+    </div>
+
+    <!-- Etapa 2: Escolher horário -->
+    <div class="step" id="step2" style="display: none;">
+        <h2>Escolha o Horário</h2>
+        <div class="time-options">
+            <label><input type="radio" name="time" value="09:00"> 09:00</label><br>
+            <label><input type="radio" name="time" value="10:00"> 10:00</label><br>
+            <label><input type="radio" name="time" value="11:00"> 11:00</label><br>
+            <label><input type="radio" name="time" value="12:00"> 12:00</label><br>
+            <label><input type="radio" name="time" value="13:00"> 13:00</label><br>
+            <label><input type="radio" name="time" value="14:00"> 14:00</label><br>
+            <label><input type="radio" name="time" value="15:00"> 15:00</label><br>
+            <label><input type="radio" name="time" value="16:00"> 16:00</label><br>
+            <label><input type="radio" name="time" value="17:00"> 17:00</label><br>
+            <label><input type="radio" name="time" value="18:00"> 18:00</label><br>
+        </div>
+        <button class="btn1" onclick="goBackToStep1()">Voltar</button>
+        <button class="btn1" id="confirmBtn">Confirmar</button>
+    </div>
+  
+    <script src="/js/index.js"></script>
+</body>
+</html>
