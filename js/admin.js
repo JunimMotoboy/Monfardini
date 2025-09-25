@@ -27,14 +27,14 @@ function logoutAdmin() {
 }
 
 // Tabs
-function openTab(tabName) {
+function openTab(tabName, evt) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.classList.remove('active'));
     document.getElementById(tabName).classList.add('active');
 
     const tabBtns = document.querySelectorAll('.tab-btn');
     tabBtns.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    evt.target.classList.add('active');
 }
 
 // Load and display bookings

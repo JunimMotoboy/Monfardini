@@ -31,9 +31,11 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
-    // Store the name and phone in localStorage
+    // Store the name, phone, email, and password in localStorage
     localStorage.setItem('clientName', name);
     localStorage.setItem('clientPhone', phone);
+    localStorage.setItem('clientEmail', email);
+    localStorage.setItem('clientPassword', password);
 
     window.location.href = 'login.html';
 });

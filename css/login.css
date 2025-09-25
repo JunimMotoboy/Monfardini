@@ -35,6 +35,13 @@ body {
   width: 100%;
   align-items: center;
 }
+
+.role-selection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .box-input label {
   font-size: 16px;
   font-weight: 500;

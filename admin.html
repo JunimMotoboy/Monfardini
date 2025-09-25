@@ -26,15 +26,15 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('schedule')">Gerenciar Agendamentos</button>
-            <button class="tab-btn" onclick="openTab('calendar')">Calendário</button>
+            <button class="tab-btn active" onclick="openTab('schedule', event)">Gerenciar Agendamentos</button>
+            <button class="tab-btn" onclick="openTab('calendar', event)">Calendário</button>
         </div>
 
         <!-- Schedule Tab -->
         <div id="schedule" class="tab-content active">
             <h2>Agendamentos</h2>
             <div id="bookingsList"></div>
-            <button onclick="refreshBookings()">Atualizar</button>
+            <button class="refresh-btn" onclick="refreshBookings()">Atualizar</button>
         </div>
 
         <!-- Calendar Tab -->

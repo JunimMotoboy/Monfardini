@@ -1,132 +1,141 @@
-var valorFinal = 0
+let valorFinal = 0; // Total value of selected services
 
 const durations = {
-  banhoDeGel: 1,
-  aplicacaoDeGel: 3,
-  manutencao: 1.5,
-  decoracao: 0,
-}
+  banhoDeGel: 1,      // Duration in hours for Banho de Gel
+  aplicacaoDeGel: 3,  // Duration in hours for Aplicação em Gel
+  manutencao: 1.5,    // Duration in hours for Manutenção
+  decoracao: 0,       // No additional duration for Decoração
+};
 
 function parseTimeToMinutes(timeStr) {
-  const [hours, minutes] = timeStr.split(':').map(Number)
-  return hours * 60 + minutes
+  // Convert time string (e.g., '09:00') to minutes since midnight
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return hours * 60 + minutes;
 }
 
-document.getElementById('banhoDeGel').addEventListener('click', (ev) => {
+document.getElementById('banhoDeGel').addEventListener('change', (ev) => {
+  // Update total when Banho de Gel checkbox changes
   if (ev.target.checked) {
-    valorFinal = valorFinal + 20
+    valorFinal += 20;
   } else {
-    valorFinal = valorFinal - 20
+    valorFinal -= 20;
   }
-  document.getElementById('valorFinal').innerText = 'R$  ' + valorFinal
-})
+  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
+});
 
-document.getElementById('aplicacaoDeGel').addEventListener('click', (ev) => {
+document.getElementById('aplicacaoDeGel').addEventListener('change', (ev) => {
+  // Update total when Aplicação em Gel checkbox changes
   if (ev.target.checked) {
-    valorFinal = valorFinal + 130
+    valorFinal += 130;
   } else {
-    valorFinal = valorFinal - 130
+    valorFinal -= 130;
   }
-  document.getElementById('valorFinal').innerText = 'R$  ' + valorFinal
-})
+  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
+});
 
-document.getElementById('manutencao').addEventListener('click', (ev) => {
+document.getElementById('manutencao').addEventListener('change', (ev) => {
+  // Update total when Manutenção checkbox changes
   if (ev.target.checked) {
-    valorFinal = valorFinal + 80
+    valorFinal += 80;
   } else {
-    valorFinal = valorFinal - 80
+    valorFinal -= 80;
   }
-  document.getElementById('valorFinal').innerText = 'R$  ' + valorFinal
-})
+  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
+});
 
-document.getElementById('decoracao').addEventListener('click', (ev) => {
+document.getElementById('decoracao').addEventListener('change', (ev) => {
+  // Update total when Decoração checkbox changes
   if (ev.target.checked) {
-    valorFinal = valorFinal + 30
+    valorFinal += 30;
   } else {
-    valorFinal = valorFinal - 30
+    valorFinal -= 30;
   }
-  document.getElementById('valorFinal').innerText = 'R$  ' + valorFinal
-})
+  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
+});
 
 function goBackToLogin() {
-  window.location.href = 'login.html'
+  // Redirect to login page
+  window.location.href = 'login.html';
 }
 
 document.getElementById('chooseTimeBtn').addEventListener('click', () => {
-  const isAnyChecked =
+  // Validate selections before proceeding to time selection
+  const isAnyChecked = 
     document.getElementById('banhoDeGel').checked ||
     document.getElementById('aplicacaoDeGel').checked ||
     document.getElementById('manutencao').checked ||
-    document.getElementById('decoracao').checked
-  const selectedDate = document.getElementById('date').value
+    document.getElementById('decoracao').checked;
+  const selectedDate = document.getElementById('date').value;
+
   if (!isAnyChecked) {
-    alert('Por favor, selecione pelo menos um procedimento.')
-    return
+    alert('Por favor, selecione pelo menos um procedimento.');
+    return;
   }
   if (!selectedDate) {
-    alert('Por favor, selecione uma data.')
-    return
+    alert('Por favor, selecione uma data.');
+    return;
   }
 
-  let totalDuration = 0
-  if (document.getElementById('banhoDeGel').checked)
-    totalDuration += durations.banhoDeGel
-  if (document.getElementById('aplicacaoDeGel').checked)
-    totalDuration += durations.aplicacaoDeGel
-  if (document.getElementById('manutencao').checked)
-    totalDuration += durations.manutencao
-  if (document.getElementById('decoracao').checked)
-    totalDuration += durations.decoracao
+  let totalDuration = 0;
+  if (document.getElementById('banhoDeGel').checked) totalDuration += durations.banhoDeGel;
+  if (document.getElementById('aplicacaoDeGel').checked) totalDuration += durations.aplicacaoDeGel;
+  if (document.getElementById('manutencao').checked) totalDuration += durations.manutencao;
+  if (document.getElementById('decoracao').checked) totalDuration += durations.decoracao;
 
-  document.getElementById('step1').style.display = 'none'
-  document.getElementById('step2').style.display = 'block'
+  // Hide step 1, show step 2
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = 'block';
 
-  const timeInputs = document.querySelectorAll('input[name="time"]')
-  const endTimeMinutes = 18 * 60 // 18:00 in minutes
+  // Disable times that overlap with total duration (end at 18:00)
+  const timeInputs = document.querySelectorAll('input[name="time"]');
+  const endTimeMinutes = 18 * 60; // 18:00 in minutes
   timeInputs.forEach((input) => {
-    const startMinutes = parseTimeToMinutes(input.value)
+    const startMinutes = parseTimeToMinutes(input.value);
     if (startMinutes + totalDuration * 60 > endTimeMinutes) {
-      input.disabled = true
-      input.parentElement.style.color = 'gray'
+      input.disabled = true;
+      input.parentElement.style.color = 'gray';
     } else {
-      input.disabled = false
-      input.parentElement.style.color = 'black'
+      input.disabled = false;
+      input.parentElement.style.color = 'black';
     }
-  })
-})
+  });
+});
 
 function goBackToStep1() {
-  document.getElementById('step2').style.display = 'none'
-  document.getElementById('step1').style.display = 'block'
+  // Return to step 1 from step 2
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step1').style.display = 'block';
   // Re-enable all time radios
-  const timeInputs = document.querySelectorAll('input[name="time"]')
+  const timeInputs = document.querySelectorAll('input[name="time"]');
   timeInputs.forEach((input) => {
-    input.disabled = false
-    input.parentElement.style.color = 'black'
-  })
+    input.disabled = false;
+    input.parentElement.style.color = 'black';
+  });
 }
 
 document.getElementById('confirmBtn').addEventListener('click', () => {
-  const selectedTime = document.querySelector('input[name="time"]:checked')
-  const clientName = localStorage.getItem('clientName')
-  const clientPhone = localStorage.getItem('clientPhone')
-  const selectedDate = document.getElementById('date').value
+  // Confirm booking and save to localStorage
+  const selectedTime = document.querySelector('input[name="time"]:checked');
+  const clientName = localStorage.getItem('clientName');
+  const clientPhone = localStorage.getItem('clientPhone');
+  const selectedDate = document.getElementById('date').value;
+
   if (!selectedTime) {
-    alert('Por favor, selecione um horário.')
-    return
+    alert('Por favor, selecione um horário.');
+    return;
   }
   if (!clientName) {
-    alert('Por favor, faça o cadastro primeiro.')
-    window.location.href = 'register.html'
-    return
+    alert('Por favor, faça o cadastro primeiro.');
+    window.location.href = 'register.html';
+    return;
   }
 
   // Get selected services
-  const services = []
-  if (document.getElementById('banhoDeGel').checked) services.push('Banho de Gel')
-  if (document.getElementById('aplicacaoDeGel').checked) services.push('Aplicação em Gel')
-  if (document.getElementById('manutencao').checked) services.push('Manutenção')
-  if (document.getElementById('decoracao').checked) services.push('Decoração')
+  const services = [];
+  if (document.getElementById('banhoDeGel').checked) services.push('Banho de Gel');
+  if (document.getElementById('aplicacaoDeGel').checked) services.push('Aplicação em Gel');
+  if (document.getElementById('manutencao').checked) services.push('Manutenção');
+  if (document.getElementById('decoracao').checked) services.push('Decoração');
 
   const booking = {
     id: Date.now(),
@@ -136,24 +145,24 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
     time: selectedTime.value,
     services: services,
     value: valorFinal
-  }
+  };
 
   // Save to localStorage
-  const bookings = JSON.parse(localStorage.getItem('bookings') || '[]')
-  bookings.push(booking)
-  localStorage.setItem('bookings', JSON.stringify(bookings))
+  const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+  bookings.push(booking);
+  localStorage.setItem('bookings', JSON.stringify(bookings));
 
-  const address = 'Rua dos Guaranis, número 215'
-  const professional = 'Fernanda'
-  const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${selectedDate}\nHorário: ${selectedTime.value}\nServiços: ${services.join(', ')}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${professional}`
-  alert(summary)
+  const address = 'Rua dos Guaranis, número 215';
+  const professional = 'Fernanda';
+  const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${selectedDate}\nHorário: ${selectedTime.value}\nServiços: ${services.join(', ')}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${professional}`;
+  alert(summary);
 
-  // Reset form
-  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false)
-  document.getElementById('date').value = ''
-  document.querySelectorAll('input[name="time"]').forEach(r => r.checked = false)
-  valorFinal = 0
-  document.getElementById('valorFinal').innerText = ''
-  document.getElementById('step2').style.display = 'none'
-  document.getElementById('step1').style.display = 'block'
-})
+  // Reset form for new booking
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.getElementById('date').value = '';
+  document.querySelectorAll('input[name="time"]').forEach(r => r.checked = false);
+  valorFinal = 0;
+  document.getElementById('valorFinal').innerText = '';
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step1').style.display = 'block';
+});
