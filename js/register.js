@@ -30,6 +30,8 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
-    
+    // Store the name in localStorage
+    localStorage.setItem('clientName', name);
+
     window.location.href = 'login.html';
 });

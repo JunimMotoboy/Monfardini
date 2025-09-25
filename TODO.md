@@ -1,0 +1,6 @@
+- [x] Add durations object for procedures
+- [x] Modify chooseTimeBtn event to calculate total duration and disable conflicting times in step2
+- [x] Add validation to require at least one procedure selected before going to step2
+- [x] Store client name in localStorage during registration
+- [x] Modify confirmBtn to show summary with name from localStorage, time, address, professional
+- [x] Fix checkboxes in step1 HTML (added labels, cleaned structure)
