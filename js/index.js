@@ -58,8 +58,13 @@ document.getElementById('chooseTimeBtn').addEventListener('click', () => {
     document.getElementById('aplicacaoDeGel').checked ||
     document.getElementById('manutencao').checked ||
     document.getElementById('decoracao').checked
+  const selectedDate = document.getElementById('date').value
   if (!isAnyChecked) {
     alert('Por favor, selecione pelo menos um procedimento.')
+    return
+  }
+  if (!selectedDate) {
+    alert('Por favor, selecione uma data.')
     return
   }
 
@@ -104,6 +109,8 @@ function goBackToStep1() {
 document.getElementById('confirmBtn').addEventListener('click', () => {
   const selectedTime = document.querySelector('input[name="time"]:checked')
   const clientName = localStorage.getItem('clientName')
+  const clientPhone = localStorage.getItem('clientPhone')
+  const selectedDate = document.getElementById('date').value
   if (!selectedTime) {
     alert('Por favor, selecione um horário.')
     return
@@ -113,8 +120,40 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
     window.location.href = 'register.html'
     return
   }
+
+  // Get selected services
+  const services = []
+  if (document.getElementById('banhoDeGel').checked) services.push('Banho de Gel')
+  if (document.getElementById('aplicacaoDeGel').checked) services.push('Aplicação em Gel')
+  if (document.getElementById('manutencao').checked) services.push('Manutenção')
+  if (document.getElementById('decoracao').checked) services.push('Decoração')
+
+  const booking = {
+    id: Date.now(),
+    name: clientName,
+    phone: clientPhone,
+    date: selectedDate,
+    time: selectedTime.value,
+    services: services,
+    value: valorFinal
+  }
+
+  // Save to localStorage
+  const bookings = JSON.parse(localStorage.getItem('bookings') || '[]')
+  bookings.push(booking)
+  localStorage.setItem('bookings', JSON.stringify(bookings))
+
   const address = 'Rua dos Guaranis, número 215'
   const professional = 'Fernanda'
-  const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nHorário: ${selectedTime.value}\nEndereço: ${address}\nProfissional: ${professional}`
+  const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${selectedDate}\nHorário: ${selectedTime.value}\nServiços: ${services.join(', ')}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${professional}`
   alert(summary)
+
+  // Reset form
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false)
+  document.getElementById('date').value = ''
+  document.querySelectorAll('input[name="time"]').forEach(r => r.checked = false)
+  valorFinal = 0
+  document.getElementById('valorFinal').innerText = ''
+  document.getElementById('step2').style.display = 'none'
+  document.getElementById('step1').style.display = 'block'
 })

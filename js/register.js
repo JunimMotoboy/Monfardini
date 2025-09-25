@@ -2,6 +2,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     event.preventDefault(); 
 
     const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -30,8 +31,9 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
-    // Store the name in localStorage
+    // Store the name and phone in localStorage
     localStorage.setItem('clientName', name);
+    localStorage.setItem('clientPhone', phone);
 
     window.location.href = 'login.html';
 });

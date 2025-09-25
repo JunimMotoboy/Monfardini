@@ -2,7 +2,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     event.preventDefault(); 
 
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('error-message');
 
    
@@ -10,8 +9,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     errorMessage.textContent = '';
 
     
-    if (!email || !password) {
-        errorMessage.textContent = 'Por favor, preencha todos os campos.';
+    if (!email) {
+        errorMessage.textContent = 'Por favor, preencha o campo de e-mail.';
         errorMessage.style.display = 'block';
         return;
     }
@@ -23,5 +22,5 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }
 
     
-    window.location.href = 'index.html';
+    window.location.href = 'admin.html';
 });

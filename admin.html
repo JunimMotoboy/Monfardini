@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Login -->
+    <div id="adminLogin" class="login-container">
+        <div class="login-box">
+            <h2>Login Admin</h2>
+            <input type="password" id="adminPassword" placeholder="Senha Admin">
+            <button onclick="loginAdmin()">Entrar</button>
+            <p id="loginError" style="color: red; display: none;">Senha incorreta!</p>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" style="display: none;">
+        <header>
+            <h1>Painel de Administração</h1>
+            <button onclick="logoutAdmin()">Sair</button>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('schedule')">Gerenciar Agendamentos</button>
+            <button class="tab-btn" onclick="openTab('calendar')">Calendário</button>
+        </div>
+
+        <!-- Schedule Tab -->
+        <div id="schedule" class="tab-content active">
+            <h2>Agendamentos</h2>
+            <div id="bookingsList"></div>
+            <button onclick="refreshBookings()">Atualizar</button>
+        </div>
+
+        <!-- Calendar Tab -->
+        <div id="calendar" class="tab-content">
+            <h2>Calendário de Agendamentos</h2>
+            <div class="calendar-controls">
+                <button onclick="prevMonth()">Mês Anterior</button>
+                <span id="currentMonth"></span>
+                <button onclick="nextMonth()">Próximo Mês</button>
+            </div>
+            <div id="calendarView"></div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Editar Agendamento</h2>
+            <form id="editForm">
+                <input type="hidden" id="editId">
+                <label>Nome: <input type="text" id="editName" required></label>
+                <label>Telefone: <input type="tel" id="editPhone" required></label>
+                <label>Data: <input type="date" id="editDate" required></label>
+                <label>Horário: <input type="time" id="editTime" required></label>
+                <label>Serviços: <input type="text" id="editServices" required></label>
+                <label>Valor: <input type="number" id="editValue" required></label>
+                <button type="submit">Salvar</button>
+                <button type="button" onclick="deleteBooking()">Remover</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
