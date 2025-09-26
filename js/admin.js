@@ -1,29 +1,11 @@
 // Admin Panel JavaScript
 
-const ADMIN_PASSWORD = 'admin123'; // Simple password for demo
-
 let currentBookings = [];
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
-// Login
-function loginAdmin() {
-    const password = document.getElementById('adminPassword').value;
-    if (password === ADMIN_PASSWORD) {
-        document.getElementById('adminLogin').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-        loadBookings();
-        renderCalendar();
-    } else {
-        document.getElementById('loginError').style.display = 'block';
-    }
-}
-
 function logoutAdmin() {
-    document.getElementById('adminPanel').style.display = 'none';
-    document.getElementById('adminLogin').style.display = 'flex';
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('loginError').style.display = 'none';
+    window.location.href = 'login.html';
 }
 
 // Tabs
@@ -202,6 +184,6 @@ function nextMonth() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    // Auto-login for demo (remove in production)
-    // loginAdmin();
+    loadBookings();
+    renderCalendar();
 });

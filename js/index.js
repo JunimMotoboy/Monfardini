@@ -14,7 +14,7 @@ function parseTimeToMinutes(timeStr) {
 }
 
 document.getElementById('banhoDeGel').addEventListener('change', (ev) => {
-  // Update total when Banho de Gel checkbox changes
+  
   if (ev.target.checked) {
     valorFinal += 20;
   } else {
@@ -24,7 +24,7 @@ document.getElementById('banhoDeGel').addEventListener('change', (ev) => {
 });
 
 document.getElementById('aplicacaoDeGel').addEventListener('change', (ev) => {
-  // Update total when Aplicação em Gel checkbox changes
+
   if (ev.target.checked) {
     valorFinal += 130;
   } else {
@@ -34,7 +34,7 @@ document.getElementById('aplicacaoDeGel').addEventListener('change', (ev) => {
 });
 
 document.getElementById('manutencao').addEventListener('change', (ev) => {
-  // Update total when Manutenção checkbox changes
+ 
   if (ev.target.checked) {
     valorFinal += 80;
   } else {
@@ -44,7 +44,7 @@ document.getElementById('manutencao').addEventListener('change', (ev) => {
 });
 
 document.getElementById('decoracao').addEventListener('change', (ev) => {
-  // Update total when Decoração checkbox changes
+
   if (ev.target.checked) {
     valorFinal += 30;
   } else {
@@ -54,12 +54,12 @@ document.getElementById('decoracao').addEventListener('change', (ev) => {
 });
 
 function goBackToLogin() {
-  // Redirect to login page
+  
   window.location.href = 'login.html';
 }
 
 document.getElementById('chooseTimeBtn').addEventListener('click', () => {
-  // Validate selections before proceeding to time selection
+ 
   const isAnyChecked = 
     document.getElementById('banhoDeGel').checked ||
     document.getElementById('aplicacaoDeGel').checked ||
@@ -82,13 +82,13 @@ document.getElementById('chooseTimeBtn').addEventListener('click', () => {
   if (document.getElementById('manutencao').checked) totalDuration += durations.manutencao;
   if (document.getElementById('decoracao').checked) totalDuration += durations.decoracao;
 
-  // Hide step 1, show step 2
+  
   document.getElementById('step1').style.display = 'none';
   document.getElementById('step2').style.display = 'block';
 
-  // Disable times that overlap with total duration (end at 18:00)
+  
   const timeInputs = document.querySelectorAll('input[name="time"]');
-  const endTimeMinutes = 18 * 60; // 18:00 in minutes
+  const endTimeMinutes = 18 * 60; 
   timeInputs.forEach((input) => {
     const startMinutes = parseTimeToMinutes(input.value);
     if (startMinutes + totalDuration * 60 > endTimeMinutes) {
