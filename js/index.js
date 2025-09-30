@@ -166,3 +166,22 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
   document.getElementById('step2').style.display = 'none';
   document.getElementById('step1').style.display = 'block';
 });
+
+
+const procedimentosDiv = document.getElementById('box-card')
+
+async function carregarProcedimentos (){
+  const res= await fetch ('https://api-monfardini.onrender.com/procedimentos/nail_designer')
+  const data = await res.json()
+  data.forEach(procedimento => {
+    var div = document.createElement('div')
+    div.innerHTML = ` <div class="card">
+        <label for="banhoDeGel"><input type="checkbox" id="${procedimento.id}"> ${procedimento.procedimento}</label>
+      </div> `
+      procedimentosDiv.appendChild(div)
+  })
+  console.log(data)
+}
+
+
+carregarProcedimentos()
