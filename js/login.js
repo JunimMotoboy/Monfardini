@@ -40,7 +40,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             errorMessage.style.display = 'block';
             return;
         }
-        window.location.href = 'index.html';
+        window.location.href = 'profissional.html';
     } else if (role === 'admin') {
         const adminEmail = 'admin@admin.com';
         const adminPassword = 'admin123';
