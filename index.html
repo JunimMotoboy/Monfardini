@@ -1,55 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agendamento Monfardini</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  
-  <button class="back-arrow" onclick="goBackToLogin()"> ← </button>
-  <!-- Etapa 1: Escolher serviço -->
-  <div class="step active" id="step1">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <button class="back-arrow" onclick="goBackToLogin()">←</button>
+    <!-- Etapa 1: Escolher serviço -->
+    <div class="step active" id="step1">
       <h2>Escolha o Procedimento</h2>
-     <div class="box-card" id="box-card"></div>
+      <div class="box-card" id="box-card"></div>
 
       <div class="card">
-        <label for="date">Data: <input type="date" id="date" required></label>
+        <label for="date">Data: <input type="date" id="date" required /></label>
       </div>
 
-          <h3 id="valorFinal"> </h3>
-          <button class="btn1" id="chooseTimeBtn"> Escolher um Horário</button>
+      <h3 id="valorFinal"></h3>
+      <button class="btn1" onclick="goToStep2()">Escolher um Horário</button>
     </div>
 
     <!-- Etapa 2: Escolher horário -->
-    <div class="step" id="step2" style="display: none;">
-        <h2>Escolha o Horário</h2>
-        <div class="time-options">
-            <label><input type="radio" name="time" value="09:00"> 09:00</label><br>
-            <label><input type="radio" name="time" value="09:30"> 09:30</label><br>
-            <label><input type="radio" name="time" value="10:00"> 10:00</label><br>
-            <label><input type="radio" name="time" value="10:30"> 10:30</label><br>
-            <label><input type="radio" name="time" value="11:00"> 11:00</label><br>
-            <label><input type="radio" name="time" value="11:30"> 11:30</label><br>
-            <label><input type="radio" name="time" value="12:00"> 12:00</label><br>
-            <label><input type="radio" name="time" value="12:30"> 12:30</label><br>
-            <label><input type="radio" name="time" value="13:00"> 13:00</label><br>
-            <label><input type="radio" name="time" value="13:30"> 13:30</label><br>
-            <label><input type="radio" name="time" value="14:00"> 14:00</label><br>
-            <label><input type="radio" name="time" value="14:30"> 14:30</label><br>
-            <label><input type="radio" name="time" value="15:00"> 15:00</label><br>
-            <label><input type="radio" name="time" value="15:30"> 15:30</label><br>
-            <label><input type="radio" name="time" value="16:00"> 16:00</label><br>
-            <label><input type="radio" name="time" value="16:30"> 16:30</label><br>
-            <label><input type="radio" name="time" value="17:00"> 17:00</label><br>
-            <label><input type="radio" name="time" value="17:30"> 17:30</label><br>
-            <label><input type="radio" name="time" value="18:00"> 18:00</label><br>
-        </div>
-        <button class="btn1" onclick="goBackToStep1()">Voltar</button>
-        <button class="btn1" id="confirmBtn">Confirmar</button>
+    <div class="step" id="step2" style="display: none">
+      <h2>Escolha o Horário</h2>
+      <div class="time-options" id="timeOpt"></div>
+
+      </div>
+      <button class="btn1" onclick="goBackToStep1()">Voltar</button>
+      <button class="btn1" id="confirmBtn">Confirmar</button>
     </div>
-  
+
     <script src="js/index.js"></script>
-</body>
+  </body>
 </html>
