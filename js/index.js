@@ -54,7 +54,10 @@ async function carregarHorarios() {
 } 
 carregarHorarios();
 
-
+function goToStep2() {
+ document.getElementById("step2").style.display = "block";
+  document.getElementById("step1").style.display = "none";
+}
 
 function goBackToStep1() {
   document.getElementById("step2").style.display = "none";
