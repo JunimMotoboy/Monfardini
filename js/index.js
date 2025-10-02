@@ -1,111 +1,35 @@
-let valorFinal = 0; // Total value of selected services
-
+let valorFinal = 0; 
 const durations = {
-  banhoDeGel: 1,      // Duration in hours for Banho de Gel
-  aplicacaoDeGel: 3,  // Duration in hours for Aplicação em Gel
-  manutencao: 1.5,    // Duration in hours for Manutenção
-  decoracao: 0,       // No additional duration for Decoração
+  banhoDeGel: 1,     
+  aplicacaoDeGel: 3,  
+  manutencao: 1.5,  
+  decoracao: 0,     
 };
+const queryString = window.location.search;
+const searchParams = new URLSearchParams(queryString);
+const cargo = searchParams.get('cargo');
+console.log(cargo)
 
 function parseTimeToMinutes(timeStr) {
-  // Convert time string (e.g., '09:00') to minutes since midnight
+  
   const [hours, minutes] = timeStr.split(':').map(Number);
   return hours * 60 + minutes;
 }
 
-document.getElementById('banhoDeGel').addEventListener('change', (ev) => {
-  
-  if (ev.target.checked) {
-    valorFinal += 20;
-  } else {
-    valorFinal -= 20;
-  }
-  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
-});
 
-document.getElementById('aplicacaoDeGel').addEventListener('change', (ev) => {
-
-  if (ev.target.checked) {
-    valorFinal += 130;
-  } else {
-    valorFinal -= 130;
-  }
-  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
-});
-
-document.getElementById('manutencao').addEventListener('change', (ev) => {
- 
-  if (ev.target.checked) {
-    valorFinal += 80;
-  } else {
-    valorFinal -= 80;
-  }
-  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
-});
-
-document.getElementById('decoracao').addEventListener('change', (ev) => {
-
-  if (ev.target.checked) {
-    valorFinal += 30;
-  } else {
-    valorFinal -= 30;
-  }
-  document.getElementById('valorFinal').innerText = 'R$ ' + valorFinal;
-});
 
 function goBackToLogin() {
   
   window.location.href = 'login.html';
 }
 
-document.getElementById('chooseTimeBtn').addEventListener('click', () => {
- 
-  const isAnyChecked = 
-    document.getElementById('banhoDeGel').checked ||
-    document.getElementById('aplicacaoDeGel').checked ||
-    document.getElementById('manutencao').checked ||
-    document.getElementById('decoracao').checked;
-  const selectedDate = document.getElementById('date').value;
 
-  if (!isAnyChecked) {
-    alert('Por favor, selecione pelo menos um procedimento.');
-    return;
-  }
-  if (!selectedDate) {
-    alert('Por favor, selecione uma data.');
-    return;
-  }
-
-  let totalDuration = 0;
-  if (document.getElementById('banhoDeGel').checked) totalDuration += durations.banhoDeGel;
-  if (document.getElementById('aplicacaoDeGel').checked) totalDuration += durations.aplicacaoDeGel;
-  if (document.getElementById('manutencao').checked) totalDuration += durations.manutencao;
-  if (document.getElementById('decoracao').checked) totalDuration += durations.decoracao;
-
-  
-  document.getElementById('step1').style.display = 'none';
-  document.getElementById('step2').style.display = 'block';
-
-  
-  const timeInputs = document.querySelectorAll('input[name="time"]');
-  const endTimeMinutes = 18 * 60; 
-  timeInputs.forEach((input) => {
-    const startMinutes = parseTimeToMinutes(input.value);
-    if (startMinutes + totalDuration * 60 > endTimeMinutes) {
-      input.disabled = true;
-      input.parentElement.style.color = 'gray';
-    } else {
-      input.disabled = false;
-      input.parentElement.style.color = 'black';
-    }
-  });
-});
 
 function goBackToStep1() {
-  // Return to step 1 from step 2
+  
   document.getElementById('step2').style.display = 'none';
   document.getElementById('step1').style.display = 'block';
-  // Re-enable all time radios
+  
   const timeInputs = document.querySelectorAll('input[name="time"]');
   timeInputs.forEach((input) => {
     input.disabled = false;
@@ -114,7 +38,7 @@ function goBackToStep1() {
 }
 
 document.getElementById('confirmBtn').addEventListener('click', () => {
-  // Confirm booking and save to localStorage
+  
   const selectedTime = document.querySelector('input[name="time"]:checked');
   const clientName = localStorage.getItem('clientName');
   const clientPhone = localStorage.getItem('clientPhone');
@@ -130,7 +54,7 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
     return;
   }
 
-  // Get selected services
+ 
   const services = [];
   if (document.getElementById('banhoDeGel').checked) services.push('Banho de Gel');
   if (document.getElementById('aplicacaoDeGel').checked) services.push('Aplicação em Gel');
@@ -147,7 +71,7 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
     value: valorFinal
   };
 
-  // Save to localStorage
+ 
   const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
   bookings.push(booking);
   localStorage.setItem('bookings', JSON.stringify(bookings));
@@ -157,7 +81,7 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
   const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${selectedDate}\nHorário: ${selectedTime.value}\nServiços: ${services.join(', ')}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${professional}`;
   alert(summary);
 
-  // Reset form for new booking
+  
   document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
   document.getElementById('date').value = '';
   document.querySelectorAll('input[name="time"]').forEach(r => r.checked = false);
@@ -171,7 +95,7 @@ document.getElementById('confirmBtn').addEventListener('click', () => {
 const procedimentosDiv = document.getElementById('box-card')
 
 async function carregarProcedimentos (){
-  const res= await fetch ('https://api-monfardini.onrender.com/procedimentos/nail_designer')
+  const res= await fetch (`https://api-monfardini.onrender.com/procedimentos/${cargo}`)
   const data = await res.json()
   data.forEach(procedimento => {
     var div = document.createElement('div')

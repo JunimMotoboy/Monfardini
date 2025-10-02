@@ -6,11 +6,15 @@ async function carregarProfissionais() {
     data.forEach(profissional => {
     var div = document.createElement("div")
     div.innerHTML = ` 
-          <img src="/img/perfil.png" alt="Fernanda-png" onclick="window.location.href= 'index.html'" />
+          <img src="/img/perfil.png" alt="Fernanda-png" onclick="window.location.href= 'index.html?cargo=${profissional.cargo}'" />
           <h2>${profissional.name}</h2>`
         
           document.getElementById('img-box').appendChild(div)
     })
+}
+function goBackToLogin() {
+  
+  window.location.href = 'login.html';
 }
         
 carregarProfissionais()
