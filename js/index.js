@@ -8,7 +8,9 @@ const durations = {
 const queryString = window.location.search;
 const searchParams = new URLSearchParams(queryString);
 const cargo = searchParams.get("cargo");
+const name = searchParams.get("name");
 console.log(cargo);
+console.log(name);
 
 function goBackToLogin() {
   window.location.href = "login.html";
@@ -148,12 +150,11 @@ document.getElementById("confirmBtn").addEventListener("click", () => {
   localStorage.setItem("bookings", JSON.stringify(bookings));
 
   const address = "Rua dos Guaranis, número 250";
-  const professional = "Fernanda";
   const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${selectedDate}\nHorário: ${
     selectedTime.value
   }\nServiços: ${services.join(
     ", "
-  )}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${professional}`;
+  )}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${name}`;
   alert(summary);
 
   document.querySelectorAll('input[type="checkbox"]').forEach((cb) => (cb.checked = false));
