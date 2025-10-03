@@ -28,7 +28,7 @@ async function carregarProcedimentos() {
       <div class="card">
         <label>
           <input type="checkbox" id="${procedimento.id}" value="${procedimento.valor}">
-          ${procedimento.procedimento} - R$ ${procedimento.valor}
+          ${procedimento.procedimento} 
         </label>
       </div> 
     `;
