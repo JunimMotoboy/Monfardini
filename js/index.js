@@ -103,7 +103,7 @@ function goBackToStep1() {
   });
 }
 
-document.getElementById("confirmBtn").addEventListener("click", () => {
+document.getElementById("confirmBtn").addEventListener("click", async() => {
   const selectedTime = document.querySelector('input[name="time"]:checked');
   const selectedServices = document.querySelectorAll(
     '#box-card input[type="checkbox"]:checked'
@@ -129,7 +129,8 @@ document.getElementById("confirmBtn").addEventListener("click", () => {
     alert("Por favor, faça o cadastro primeiro.");
     window.location.href = "register.html";
     return;
-  }
+  } 
+
 
   // Coletar serviços selecionados
   const services = [];
@@ -145,9 +146,13 @@ document.getElementById("confirmBtn").addEventListener("click", () => {
     value: valorFinal,
   };
 
-  const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-  bookings.push(booking);
-  localStorage.setItem("bookings", JSON.stringify(bookings));
+  await fetch("https://api-monfardini.onrender.com/horario_marcado", {
+    method: "POST",
+    body: JSON.stringify(booking),
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
 
   const address = "Rua dos Guaranis, número 250";
   const summary = `Agendamento finalizado!\n\nCliente: ${clientName}\nTelefone: ${clientPhone}\nData: ${selectedDate}\nHorário: ${

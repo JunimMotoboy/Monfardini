@@ -88,6 +88,10 @@ img{
 }
 
 @media (max-width: 768px) {
+  .role-selection {
+    flex-direction: column;
+  }
+  
   .box-input {
     width: 90vw;
     height: auto;
