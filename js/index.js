@@ -134,17 +134,18 @@ document.getElementById("confirmBtn").addEventListener("click", async() => {
 
   // Coletar serviços selecionados
   const services = [];
-  selectedServices.forEach((cb) => services.push(cb.value));
+  selectedServices.forEach((cb) => services.push(cb.procedimento || cb.nextSibling.textContent.trim()));
 
   const booking = {
   horario: selectedTime.value,
   data: selectedDate,
   nome_funcionario: `${name}`,
-  telefone_cliente: clientPhone,      
+  telefone_cliente: clientPhone,   
   nome_cliente: clientName,
   valor: valorFinal,
-  procedimento: services.join(", "), 
+  procedimento: services.join(", "),
 };
+  
 
 
   await fetch("https://api-monfardini.onrender.com/horario_marcado", {
