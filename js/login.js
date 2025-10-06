@@ -31,7 +31,9 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         fetch('https://api-monfardini.onrender.com/usuarios')
             .then(response => response.json())
             .then(users => {
+                console.log(users);
                 const user = users.find(u => u.email === email && u.senha === password);
+                console.log(user);
                 if (!user) {
                     errorMessage.textContent = 'E-mail ou senha incorretos ou usuário não cadastrado.';
                     errorMessage.style.display = 'block';
