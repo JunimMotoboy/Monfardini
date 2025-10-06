@@ -65,7 +65,7 @@ img:hover {
 .back-arrow:hover{
   background-color: #5a008a;
   transform: translateY(-2px);
-  
+
 }
 .box-hero{
   display: flex;
@@ -98,6 +98,10 @@ img:hover {
 
 @media (max-width: 800px) {
   .img-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 150px;
     flex-direction: column;
     align-items: center;
   }
@@ -116,6 +120,23 @@ img:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.box-hero{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.img-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;;
 }
 
 
