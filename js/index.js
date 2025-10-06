@@ -188,6 +188,7 @@ document.getElementById('confirmBtn').addEventListener('click', async () => {
   )}\nValor: R$ ${valorFinal}\nEndereço: ${address}\nProfissional: ${name}`
   alert(summary)
 
+  // Limpa campos
   document
     .querySelectorAll('input[type="checkbox"]')
     .forEach((cb) => (cb.checked = false))
@@ -195,6 +196,13 @@ document.getElementById('confirmBtn').addEventListener('click', async () => {
   document
     .querySelectorAll('input[name="time"]')
     .forEach((r) => (r.checked = false))
+  valorFinal = 0
+  document.getElementById('valorFinal').innerText = ''
+  document.getElementById('step2').style.display = 'none'
+  document.getElementById('step1').style.display = 'block'
+
+  // Redireciona para página de meus agendamentos
+  window.location.href = 'meus-agendamentos.html'
   valorFinal = 0
   document.getElementById('valorFinal').innerText = ''
   document.getElementById('step2').style.display = 'none'

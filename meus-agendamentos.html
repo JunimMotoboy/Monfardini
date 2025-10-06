@@ -6,15 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Agendamentos</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/meus-agendamentos.css">
 </head>
 
 <body>
-    <button class="back-arrow" onclick="window.location.href='index.html'">← Voltar</button>
     <div class="step">
-        <h2>Meus Agendamentos</h2>
+        <div class="box-input" >
+            <button class="btn1" onclick="logout()">Logout</button>
+            <h2 style="flex:1; text-align:center;">Meus Agendamentos</h2>
+            <button class="btn1" onclick="window.location.href='index.html'">Novo Agendamento</button>
+        </div>
         <div id="meusAgendamentosList"></div>
     </div>
     <script src="js/meus-agendamentos.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 
 </html>
