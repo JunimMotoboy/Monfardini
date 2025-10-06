@@ -31,11 +31,28 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
-    // Store the name, phone, email, and password in localStorage
-    localStorage.setItem('clientName', name);
-    localStorage.setItem('clientPhone', phone);
-    localStorage.setItem('clientEmail', email);
-    localStorage.setItem('clientPassword', password);
-
-    window.location.href = 'login.html';
+    // Envia para o banco de dados (API)
+    fetch('https://api-monfardini.onrender.com/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nome: name,
+            telefone: phone,
+            email: email,
+            senha: password
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('Erro ao cadastrar usuário');
+        // Salva localmente também
+        localStorage.setItem('clientName', name);
+        localStorage.setItem('clientPhone', phone);
+        localStorage.setItem('clientEmail', email);
+        localStorage.setItem('clientPassword', password);
+        window.location.href = 'login.html';
+    })
+    .catch(err => {
+        errorMessage.textContent = 'Erro ao cadastrar usuário. Tente novamente.';
+        errorMessage.style.display = 'block';
+    });
 });

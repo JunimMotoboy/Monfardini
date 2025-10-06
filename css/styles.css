@@ -1,166 +1,201 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .step {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .step h2 {
-    font-size: 2rem;
-    color: #4a4a4a;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  color: #4a4a4a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .card {
-    background: #f9f9f9;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    align-items: center;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
-.card ,h2{
-    width: 100%;
-    text-align: center;
-    font-size: 20px !important;
+.card,
+h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 20px !important;
 }
 
 .card:hover {
-    background: #e8f4f8;
-    border-color: #667eea;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: #e8f4f8;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.card input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    accent-color: #667eea;
-    cursor: pointer;
+.card input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+  cursor: pointer;
 }
-#date{
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-
+#date {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
-
 
 #valorFinal {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #667eea;
-    margin-top: 20px;
-    padding: 10px;
-    background: #f0f0f0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #667eea;
+  margin-top: 20px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
-.btn1{
-    padding: 20px;
-    border-radius: 6px;
-    font-weight: 200;
-    font-size: 20px;
-    background-color: #7b0de9;
-    color: #ddd;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(123, 13, 233, 0.3);
-    margin-top: 15px;
+.btn1 {
+  padding: 20px;
+  border-radius: 6px;
+  font-weight: 200;
+  font-size: 20px;
+  background-color: #7b0de9;
+  color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(123, 13, 233, 0.3);
+  margin-top: 15px;
 }
 
 .btn1:hover {
-    background-color: #5a0bb3;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(123, 13, 233, 0.4);
+  background-color: #5a0bb3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(123, 13, 233, 0.4);
 }
 
 .back-arrow {
-    color: #ddd;
-    background-color: #7b0de9;
-    cursor: pointer;
-    padding: 8px;
-    margin-bottom: 20px;
-    transition: color 0.3s ease;
-    font-size: 20px;
-     border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(123, 13, 233, 0.3);
-    border-radius: 8px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 999;
+  color: #ddd;
+  background-color: #7b0de9;
+  cursor: pointer;
+  padding: 8px;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(123, 13, 233, 0.3);
+  border-radius: 8px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
 }
 
 .back-arrow:hover {
-     background-color: #5a0bb3;
-    transform: translateY(-2px);
-
+  background-color: #5a0bb3;
+  transform: translateY(-2px);
 }
 
 .time-options {
-    margin: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.time-options label {
-    display: block;
-    margin: 10px 0;
-    font-size: 18px;
-    cursor: pointer;
+.time-options {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
 
-.time-options input[type="radio"] {
-    margin-right: 10px;
-    accent-color: #667eea;
+.time-radio-label {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 5px 0;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.time-radio-label input[type='radio'] {
+  margin-right: 8px;
+  accent-color: #667eea;
+}
+
+.time-radio-label.selected,
+.time-radio-label:hover {
+  background: #e8f4f8;
+  border-color: #667eea;
+}
+
+.time-radio-span {
+  font-weight: 500;
+  color: #4a4a4a;
+}
+
+.time-options input[type='radio'] {
+  margin-right: 10px;
+  accent-color: #667eea;
 }
 
 @media (max-width: 768px) {
-    .step {
-        padding: 20px;
-    }
+  .step {
+    padding: 20px;
+  }
 
-    .step h2 {
-        font-size: 1.5rem;
-    }
+  .step h2 {
+    font-size: 1.5rem;
+  }
 
-    .card {
-        flex-direction: column;
-        text-align: left;
-    }
+  .card {
+    flex-direction: column;
+    text-align: left;
+  }
 }

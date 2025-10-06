@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agendamento Monfardini</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <button class="back-arrow" onclick="goBackToLogin()">←</button>
-    <!-- Etapa 1: Escolher serviço -->
-    <div class="step active" id="step1">
-      <h2>Escolha o Procedimento</h2>
-      <div class="box-card" id="box-card"></div>
 
-      <div class="card">
-        <label for="date">Data: <input type="date" id="date" required /></label>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento Monfardini</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-      <h3 id="valorFinal"></h3>
-      <button class="btn1" onclick="goToStep2()">Escolher um Horário</button>
+<body>
+  <button class="back-arrow" onclick="goBackToLogin()">←</button>
+  <!-- Etapa 1: Escolher serviço -->
+  <div class="step active" id="step1">
+    <h2>Escolha o Procedimento</h2>
+    <div class="box-card" id="box-card"></div>
+
+    <div class="card">
+      <label for="date">Data: <input type="date" id="date" required /></label>
     </div>
 
-    <!-- Etapa 2: Escolher horário -->
-    <div class="step" id="step2" style="display: none">
-      <h2>Escolha o Horário</h2>
-      <div class="time-options" id="timeOpt"></div>
+    <h3 id="valorFinal"></h3>
+    <button class="btn1" onclick="goToStep2()">Escolher um Horário</button>
+  </div>
 
-      
-      <button class="btn1" onclick="goBackToStep1()">Voltar</button>
-      <button class="btn1" id="confirmBtn">Confirmar</button>
-    </div>
+  <!-- Etapa 2: Escolher horário -->
+  <div class="step" id="step2" style="display: none">
+    <h2>Escolha o Horário</h2>
+    <div class="time-options" id="timeOpt"></div>
 
-    <script src="js/index.js"></script>
-  </body>
+
+    <button class="btn1" onclick="goBackToStep1()">Voltar</button>
+    <button class="btn1" id="confirmBtn">Confirmar</button>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+
 </html>
