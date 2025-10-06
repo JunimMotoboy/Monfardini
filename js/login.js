@@ -28,19 +28,21 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     }
 
     if (role === 'user') {
-        const storedEmail = localStorage.getItem('clientEmail');
-        const storedPassword = localStorage.getItem('clientPassword');
-        if (!storedEmail || !storedPassword) {
-            errorMessage.textContent = 'Usuário não cadastrado. Por favor, cadastre-se primeiro.';
-            errorMessage.style.display = 'block';
-            return;
-        }
-        if (email !== storedEmail || password !== storedPassword) {
-            errorMessage.textContent = 'E-mail ou senha incorretos.';
-            errorMessage.style.display = 'block';
-            return;
-        }
-        window.location.href = 'profissional.html';
+        fetch('https://api-monfardini.onrender.com/usuarios')
+            .then(response => response.json())
+            .then(users => {
+                const user = users.find(u => u.email === email && u.senha === password);
+                if (!user) {
+                    errorMessage.textContent = 'E-mail ou senha incorretos ou usuário não cadastrado.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                window.location.href = 'profissional.html';
+            })
+            .catch(() => {
+                errorMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente mais tarde.';
+                errorMessage.style.display = 'block';
+            });
     } else if (role === 'admin') {
         const adminEmail = 'admin@admin.com';
         const adminPassword = 'admin123';
