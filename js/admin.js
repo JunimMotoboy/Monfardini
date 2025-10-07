@@ -22,10 +22,14 @@ function openTab(tabName, evt) {
 
 // Load and display bookings
 function loadBookings() {
-  fetch('https://api-monfardini.onrender.com/horario_marcado')
+  // Busca id do funcionário logado
+  const funcionarioId = localStorage.getItem('funcionarioId')
+  if (!funcionarioId) return
+  fetch(
+    `https://api-monfardini.onrender.com/agendamentos/funcionario/${funcionarioId}`
+  )
     .then((response) => response.json())
     .then((data) => {
-      // Adaptar os dados recebidos da API para o formato esperado pelo restante do código
       currentBookings = data.map((booking, idx) => ({
         id: booking.id || idx,
         name: booking.nome_cliente || '',
@@ -44,7 +48,7 @@ function loadBookings() {
       currentBookings = []
       displayBookings()
       renderCalendar()
-      console.error('Erro ao buscar agendamentos da API:', err)
+      console.error('Erro ao buscar agendamentos do funcionário:', err)
     })
 }
 
