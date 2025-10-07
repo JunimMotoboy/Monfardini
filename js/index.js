@@ -127,14 +127,16 @@ function goBackToStep1() {
     input.parentElement.style.color = 'black'
   })
 }
-
 document.getElementById('confirmBtn').addEventListener('click', async () => {
   const selectedTime = document.querySelector('input[name="time"]:checked')
   const selectedServices = document.querySelectorAll(
     '#box-card input[type="checkbox"]:checked'
   )
+
+  // ✅ Recupera o nome e telefone do cliente logado
   const clientName = localStorage.getItem('clientName')
   const clientPhone = localStorage.getItem('clientPhone')
+
   const selectedDate = document.getElementById('date').value
 
   // Validar serviços
@@ -203,6 +205,7 @@ document.getElementById('confirmBtn').addEventListener('click', async () => {
 
   // Redireciona para página de meus agendamentos
   window.location.href = 'meus-agendamentos.html'
+
   valorFinal = 0
   document.getElementById('valorFinal').innerText = ''
   document.getElementById('step2').style.display = 'none'
