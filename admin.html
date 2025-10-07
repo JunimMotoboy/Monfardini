@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin</title>
-        <link rel="stylesheet" href="css/admin.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <!-- Admin Panel -->
     <div id="adminPanel">
         <header>
             <h1>Painel de Administração</h1>
-            <button onclick="logoutAdmin()">Sair</button>
+            <div style="display:flex;align-items:center;gap:20px;justify-content:flex-end;">
+                <span id="adminEmail" style="color:#7b0de9;font-weight:500;font-size:16px;"></span>
+                <button onclick="logoutAdmin()">Sair</button>
+            </div>
         </header>
 
         <!-- Tabs -->
@@ -61,5 +66,13 @@
     </div>
 
     <script src="js/admin.js"></script>
+    <script>
+        // Exibe email do funcionário logado
+        document.addEventListener('DOMContentLoaded', function () {
+            var email = localStorage.getItem('funcionarioEmail');
+            if (email) document.getElementById('adminEmail').textContent = email;
+        });
+    </script>
 </body>
+
 </html>
