@@ -150,9 +150,9 @@ document.getElementById('confirmBtn').addEventListener('click', async () => {
   }
 
   // Validar cadastro do cliente
-  if (!clientName) {
-    alert('Por favor, faça o cadastro primeiro.')
-    window.location.href = 'register.html'
+  if (!clientName || clientName === 'undefined' || clientName === 'null' || clientName.trim() === '') {
+    alert('Por favor, faça login primeiro.')
+    window.location.href = 'login.html'
     return
   }
 
@@ -162,17 +162,36 @@ document.getElementById('confirmBtn').addEventListener('click', async () => {
     services.push(cb.procedimento || cb.nextSibling.textContent.trim())
   )
 
+  // Buscar id do profissional pela API usando o nome
+  let funcionarioId = null
+  try {
+    const res = await fetch('https://api-monfardini.onrender.com/funcionarios')
+    const funcionarios = await res.json()
+    // Busca pelo nome do profissional (deve estar na URL como ?name=Karen, por exemplo)
+    const profissional = funcionarios.find(f => f.name === name)
+    if (!profissional) {
+      alert('Profissional não encontrado.')
+      return
+    }
+    funcionarioId = profissional.id
+  } catch (e) {
+    alert('Erro ao buscar profissional.')
+    return
+  }
+
   const booking = {
     horario: selectedTime.value,
     data: selectedDate,
-    nome_funcionario: `${name}`,
-    telefone_cliente: clientPhone,
     nome_cliente: clientName,
     valor: valorFinal,
     procedimento: services.join(', '),
+    telefone_cliente: clientPhone,
+    funcionario_id: funcionarioId,
   }
+  console.log(booking)
 
-  await fetch('https://api-monfardini.onrender.com/horario_marcado', {
+  // Envia para a rota correta, vinculando ao profissional
+  await fetch(`https://api-monfardini.onrender.com/agendamentos/funcionario/${funcionarioId}`, {
     method: 'POST',
     body: JSON.stringify(booking),
     headers: {
@@ -203,6 +222,7 @@ document.getElementById('confirmBtn').addEventListener('click', async () => {
 
   // Redireciona para página de meus agendamentos
   window.location.href = 'meus-agendamentos.html'
+
   valorFinal = 0
   document.getElementById('valorFinal').innerText = ''
   document.getElementById('step2').style.display = 'none'
